@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 @Service
-//@Profile("first")
+@Profile("first")
 @RequiredArgsConstructor
 public class InitDatabaseService {
     private final JdbcTemplate jdbcTemplate;

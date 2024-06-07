@@ -14,7 +14,7 @@ insert into application.event_type (name)
 values
   ('museum'),
   ('cinema'),
-  ('theather');
+  ('theatre');
 
 create table application.place (
   id serial primary key,
@@ -34,7 +34,7 @@ create table application.event (
 create table application.ticket (
   id serial primary key,
   event_id int references event(id),
-  client_email varchar(100) not null,
+  client_email varchar(100),
   price numeric(9,2) not null,
   is_selled boolean default false
 );
