@@ -1,4 +1,4 @@
-package org.javaacademy.afisha.controller;
+package org.javaacademy.afisha.controller.it;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -10,8 +10,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import static org.javaacademy.afisha.controller.util.AfishaUtil.*;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-class TicketControllerTest extends AfishaTest{
+class TicketControllerTest {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
