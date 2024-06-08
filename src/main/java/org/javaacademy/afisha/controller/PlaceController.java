@@ -1,5 +1,7 @@
 package org.javaacademy.afisha.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.javaacademy.afisha.dto.EventDto;
 import org.javaacademy.afisha.dto.PlaceDto;
@@ -14,26 +16,21 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/place")
+@RequestMapping("/api/v1/place")
+@Tag(name = "Места мероприятий" , description = "Операции с местами проведения мероприятий")
 public class PlaceController {
     private PlaceService placeService;
 
     @PostMapping("/add")
+    @Operation(summary = "Создание нового место проведения")
     public ResponseEntity<?> addNewPlace(@RequestBody PlaceDto placeDto) {
         placeService.addNewPlace(placeDto);
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
 
     @GetMapping("/takeAll")
+    @Operation(summary = "Вымести все места мероприятий")
     public ResponseEntity<List<PlaceDto>> takeAllPlace() {
         return ResponseEntity.ok(placeService.takeAllPlace());
-    }
-
-    @GetMapping("/test")
-    public EventDto init() {
-        EventDto eventDto = new EventDto();
-        eventDto.setEventDate(LocalDateTime.now());
-        eventDto.setPlace(new PlaceDto("null","null","null"));
-        return eventDto;
     }
 }

@@ -17,8 +17,8 @@ public class ReportRepository {
                 SELECT
                   e.name as "event_name",
                   et.name as "event_type",
-                  COALESCE(res.sum, 0) AS "profit",
-                  COALESCE(res.count, 0) AS "tickets"
+                  COALESCE(r.sum, 0) AS "profit",
+                  COALESCE(r.count, 0) AS "tickets"
                 FROM
                   application.event e
                   LEFT JOIN application.event_type et ON e.event_type_id = et.id
@@ -30,11 +30,12 @@ public class ReportRepository {
                     FROM
                       application.ticket
                     WHERE
-                      is_selled = TRUE
+                      client_email notnull  and is_selled = TRUE
                     GROUP BY
                       event_id
-                  ) res ON e.id = res.event_id;
+                  ) r ON e.id = r.event_id;
                 """;
+
         return jdbcTemplate.query(sqlReport , (resultSet, rowNumber) ->{
             ReportDto reportDto = new ReportDto();
             reportDto.setEventName(resultSet.getString("event_name"));
