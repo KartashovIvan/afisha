@@ -19,7 +19,7 @@ public class EventController {
 
     @PostMapping("/add")
     @Operation(summary = "Создание нового события")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.CREATED)
     public void createEvent(@RequestBody EventDto eventDto) {
         eventService.createEvent(eventDto);
     }

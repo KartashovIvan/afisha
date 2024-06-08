@@ -65,15 +65,10 @@ public class TicketRepository {
                 where event_id = %s and client_email isnull;
                 """.formatted(idEvent);
 
-        return Objects.requireNonNull(jdbcTemplate.queryForObject(sqlTakeNotSelledTicket, (resultSet, rowNum) -> resultSet.getInt("count")))
+        return Objects.requireNonNull(jdbcTemplate.queryForObject(sqlTakeNotSelledTicket,
+                        (resultSet, rowNum) -> resultSet.getInt("count")))
                 .describeConstable()
                 .orElse(0);
-//
-//        String sqlTakeSelledTicket = """
-//                select count(*) from application.ticket
-//                where event_id = %s and client_email notnull;
-//                """.formatted(idEvent);
-//        Integer selled = jdbcTemplate.queryForObject(sqlTakeSelledTicket, (resultSet, rowNum) -> resultSet.getInt("count"));
     }
 
     public void buyTicket(Integer eventId, String clientEmail) {

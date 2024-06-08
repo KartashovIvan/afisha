@@ -7,7 +7,6 @@ import org.javaacademy.afisha.dto.TicketDto;
 import org.javaacademy.afisha.servcie.TicketService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import java.time.LocalDateTime;
 
 @RestController
 @AllArgsConstructor
@@ -16,7 +15,7 @@ import java.time.LocalDateTime;
 public class TicketController {
     private TicketService ticketService;
 
-    @PostMapping("/buy")
+    @PatchMapping("/buy")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @Operation(summary = "Покупка билеа на мероприятие")
     public void buyTicket(@RequestBody TicketDto ticketDto) {
